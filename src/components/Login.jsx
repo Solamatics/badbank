@@ -18,6 +18,7 @@ const Login = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    setFormValues(initialValues);
   };
 
   //validate form values
@@ -46,23 +47,15 @@ const Login = () => {
   return (
     <div style={{ marginTop: "5rem" }}>
       {Object.keys(formErrors).length === 0 && isSubmit ? (
-        // <Modal.Dialog>
-        //   <Modal.Header closeButton>
-        //     <Modal.Title>Modal title</Modal.Title>
-        //   </Modal.Header>
-
-        //   <Modal.Body>
-        //     <p>Modal body text goes here.</p>
-        //   </Modal.Body>
-
-        //   <Modal.Footer>
-        //     <Button variant="secondary">Close</Button>
-        //     <Button variant="primary">Save changes</Button>
-        //   </Modal.Footer>
-        // </Modal.Dialog>
-        <h1>Signed in successfully</h1>
+        <Modal.Dialog>
+          <Modal.Body>
+            <p style={{ textAlign: "center" }}>Signed in successfully</p>
+          </Modal.Body>
+        </Modal.Dialog>
       ) : (
-        <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+        // <h1>Signed in successfully</h1>
+        // <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+        ""
       )}
 
       <Container>
@@ -71,7 +64,7 @@ const Login = () => {
             text="white"
             style={{ width: "25rem" }}
             className="mb-2"
-            bg="success"
+            bg="light"
           >
             <Card.Header style={{ color: "white", textAlign: "center" }}>
               Login
@@ -90,7 +83,7 @@ const Login = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  <p>{formErrors.email}</p>
+                  <p style={{ color: "red" }}>{formErrors.email}</p>
                   <div className="formGroup">
                     <label for="country">Password</label>
                     <input
@@ -102,7 +95,7 @@ const Login = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  <p>{formErrors.password}</p>
+                  <p style={{ color: "red" }}>{formErrors.password}</p>
                   <button
                     type="submit"
                     className="btn"

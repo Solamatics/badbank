@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Card, Container, Row } from "react-bootstrap";
+import { Card, Container, Row, Modal } from "react-bootstrap";
 import validation from "./validation";
 
 const CreateAccount = ({ submitForm }) => {
-  const [values, setValues] = useState({ name: "", email: "", password: "" });
+  const initialValues = { email: "", password: "" };
+  const [values, setValues] = useState({ initialValues });
   const [errors, setErrors] = useState({});
   const [dataIsCorrect, setDataIsCorrect] = useState(false);
 
@@ -22,14 +23,34 @@ const CreateAccount = ({ submitForm }) => {
     });
   };
 
+  const getFormValues = () => {
+    const storedValues = localStorage.getItem('form');
+    if(!storedValues) return {
+      email: "",
+      password: "",
+    }
+    return JSON.parse(storedValues)
+  }
+
   useEffect(() => {
     if (Object.keys(errors).length === 0 && dataIsCorrect) {
       submitForm(true);
     }
+    localStorage.setItem("form", JSON.stringify(values));
   }, [errors]);
 
   return (
     <div style={{ marginTop: "5rem" }}>
+    <pre>{JSON.stringify(values, undefined, 2)}</pre>
+      {Object.keys(errors).length === 0 && dataIsCorrect ? (
+        <Modal.Dialog>
+          <Modal.Body>
+            <p style={{ textAlign: "center" }}>Signed in successfully</p>
+          </Modal.Body>
+        </Modal.Dialog>
+      ) : (
+        ""
+      )}
       <Container>
         <Row className="justify-content-md-center">
           <Card
