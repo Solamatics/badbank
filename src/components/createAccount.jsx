@@ -1,37 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Card, Container, Row, Modal } from "react-bootstrap";
 import validation from "./validation";
+import { useGlobalContext } from "./context";
 
 const CreateAccount = ({ submitForm }) => {
-  const initialValues = { email: "", password: "" };
-  const [values, setValues] = useState({ initialValues });
-  const [errors, setErrors] = useState({});
-  const [dataIsCorrect, setDataIsCorrect] = useState(false);
+  // const initialValues = { email: "", password: "" };
+  // const [values, setValues] = useState({ initialValues });
+  // const [errors, setErrors] = useState({});
+  // const [dataIsCorrect, setDataIsCorrect] = useState(false);
 
-  //handle submission of form
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setErrors(validation(values));
-    setDataIsCorrect(true);
-  };
+  const { values, handleInputChange, handleSubmit, errors, dataIsCorrect } =
+    useGlobalContext();
 
-  //handle input changes
-  const handleChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // //handle submission of form
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setErrors(validation(values));
+  //   setDataIsCorrect(true);
+  // };
 
-  const getFormValues = () => {
-    const storedValues = localStorage.getItem("form");
-    if (!storedValues)
-      return {
-        email: "",
-        password: "",
-      };
-    return JSON.parse(storedValues);
-  };
+  // //handle input changes
+  // const handleChange = (e) => {
+  //   setValues({
+  //     ...values,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  // const getFormValues = () => {
+  //   const storedValues = localStorage.getItem("form");
+  //   if (!storedValues)
+  //     return {
+  //       email: "",
+  //       password: "",
+  //     };
+  //   return JSON.parse(storedValues);
+  // };
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && dataIsCorrect) {
@@ -41,7 +45,7 @@ const CreateAccount = ({ submitForm }) => {
   }, [errors]);
 
   return (
-    <div style={{ marginTop: "5rem" }}>
+    <div style={{ marginTop: "10rem" }}>
       {/* <pre>{JSON.stringify(values, undefined, 2)}</pre> */}
       {Object.keys(errors).length === 0 && dataIsCorrect ? (
         <Modal.Dialog>
@@ -75,38 +79,38 @@ const CreateAccount = ({ submitForm }) => {
               <Card.Text>
                 <form>
                   <div className="formGroup">
-                    <label for="name">Name</label>
+                    <label htmlFor="name">Name</label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       placeholder="Enter name"
                       value={values.name}
-                      onChange={handleChange}
+                      onChange={handleInputChange}
                     />
                     {errors.name && <p className="error">{errors.name}</p>}
                   </div>
                   <div className="formGroup">
-                    <label for="email">Email Address</label>
+                    <label htmlFor="email">Email Address</label>
                     <input
                       type="text"
                       id="email"
                       name="email"
                       placeholder="Enter email"
                       value={values.email}
-                      onChange={handleChange}
+                      onChange={handleInputChange}
                     />
                     {errors.email && <p className="error">{errors.email}</p>}
                   </div>
                   <div className="formGroup">
-                    <label for="country">Password</label>
+                    <label htmlFor="country">Password</label>
                     <input
                       type="password"
                       id="password"
                       name="password"
                       placeholder="Password"
                       value={values.password}
-                      onChange={handleChange}
+                      onChange={handleInputChange}
                     />
                     {errors.password && (
                       <p className="error">{errors.password}</p>
@@ -125,8 +129,6 @@ const CreateAccount = ({ submitForm }) => {
               </Card.Text>
             </Card.Body>
           </Card>
-
-          {/* <SignupFormSuccess name={} /> */}
         </Row>
       </Container>
     </div>

@@ -13,7 +13,7 @@ const Withdraw = () => {
     handleWithdrawalChange,
   } = useGlobalContext();
   return (
-    <div style={{ marginTop: "5rem" }}>
+    <div style={{ marginTop: "10rem" }}>
       <Container>
         <Row className="justify-content-md-center">
           <Card

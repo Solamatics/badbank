@@ -45,7 +45,7 @@ const Login = () => {
   }, [formErrors]);
 
   return (
-    <div style={{ marginTop: "5rem" }}>
+    <div style={{ marginTop: "10rem" }}>
       {Object.keys(formErrors).length === 0 && isSubmit ? (
         <Modal.Dialog>
           <Modal.Body>

@@ -3,7 +3,7 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 import { useGlobalContext } from "./context";
 
 const Deposit = () => {
-  const { handleClick, balance, amount, handlechange } = useGlobalContext();
+  const { handleClick, balance, amount, handleChange } = useGlobalContext();
   // console.log(data);
   // const [balance, setBalance] = useState(0);
   // const [amount, setAmount] = useState(0);
@@ -18,7 +18,7 @@ const Deposit = () => {
   // };
 
   return (
-    <div style={{ marginTop: "5rem" }}>
+    <div style={{ marginTop: "10rem" }}>
       <Container>
         <Row className="justify-content-md-center">
           <Card
@@ -65,7 +65,7 @@ const Deposit = () => {
                             name="deposit"
                             value={amount}
                             placeholder="Deposit Amount"
-                            onChange={handlechange}
+                            onChange={handleChange}
                           />
                         </div>
                       </Row>

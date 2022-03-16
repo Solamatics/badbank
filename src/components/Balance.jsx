@@ -3,9 +3,9 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 import { useGlobalContext } from "./context";
 
 const Balance = () => {
-  const { handleClick, balance, amount, handlechange } = useGlobalContext();
+  const { balance } = useGlobalContext();
   return (
-    <div style={{ marginTop: "5rem" }}>
+    <div style={{ marginTop: "10rem" }}>
       <Container>
         <Row className="justify-content-md-center">
           <Card
