@@ -1,7 +1,17 @@
 import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
+import { useGlobalContext } from "./context";
 
 const Withdraw = () => {
+  const {
+    handleClick,
+    balance,
+    amount,
+    withdrawAmount,
+    handlechange,
+    handleWithdrawClick,
+    handleWithdrawalChange,
+  } = useGlobalContext();
   return (
     <div style={{ marginTop: "5rem" }}>
       <Container>
@@ -26,22 +36,31 @@ const Withdraw = () => {
                 <form>
                   <div className="formGroup">
                     <Row>
-                      <Col>Balance</Col>
-                      <Col>$100</Col>
+                      <Col style={{ color: "black", fontWeight: "bold" }}>
+                        Balance
+                      </Col>
+                      <Col style={{ color: "black", fontWeight: "bold" }}>
+                        ${balance}
+                      </Col>
                     </Row>
                   </div>
                   <div className="formGroup">
                     <Col>
                       <Row>
                         <div className="formGroup">
-                          <label for="email" style={{ color: "black" }}>
+                          <label
+                            for="email"
+                            style={{ color: "black", fontWeight: "bold" }}
+                          >
                             Withdraw Amount
                           </label>
                           <input
                             type="text"
                             id="withdraw"
                             name="withdraw"
+                            value={withdrawAmount}
                             placeholder="Withdraw Amount"
+                            onChange={handleWithdrawalChange}
                           />
                         </div>
                       </Row>
@@ -51,6 +70,7 @@ const Withdraw = () => {
                     type="submit"
                     className="btn"
                     style={{ color: "white", backgroundColor: "gray" }}
+                    onClick={handleWithdrawClick}
                   >
                     Withdraw Amount
                   </button>

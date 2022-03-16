@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
+import { useGlobalContext } from "./context";
 
 const Deposit = () => {
+  const { handleClick, balance, amount, handlechange } = useGlobalContext();
+  // console.log(data);
+  // const [balance, setBalance] = useState(0);
+  // const [amount, setAmount] = useState(0);
+
+  //handleClick
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+
+  //   //increment the amount of deposit made
+  //   setBalance(parseInt(balance) + parseInt(amount));
+  //   setAmount("");
+  // };
+
   return (
     <div style={{ marginTop: "5rem" }}>
       <Container>
@@ -30,7 +45,7 @@ const Deposit = () => {
                         Balance
                       </Col>
                       <Col style={{ color: "black", fontWeight: "bold" }}>
-                        $100
+                        ${balance}
                       </Col>
                     </Row>
                   </div>
@@ -48,7 +63,9 @@ const Deposit = () => {
                             type="text"
                             id="deposit"
                             name="deposit"
+                            value={amount}
                             placeholder="Deposit Amount"
+                            onChange={handlechange}
                           />
                         </div>
                       </Row>
@@ -58,6 +75,7 @@ const Deposit = () => {
                     type="submit"
                     className="btn"
                     style={{ color: "black", backgroundColor: "white" }}
+                    onClick={handleClick}
                   >
                     Deposit
                   </button>

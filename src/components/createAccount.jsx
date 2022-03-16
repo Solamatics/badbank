@@ -15,7 +15,7 @@ const CreateAccount = ({ submitForm }) => {
     setDataIsCorrect(true);
   };
 
-  //handle input chnages
+  //handle input changes
   const handleChange = (e) => {
     setValues({
       ...values,
@@ -24,13 +24,14 @@ const CreateAccount = ({ submitForm }) => {
   };
 
   const getFormValues = () => {
-    const storedValues = localStorage.getItem('form');
-    if(!storedValues) return {
-      email: "",
-      password: "",
-    }
-    return JSON.parse(storedValues)
-  }
+    const storedValues = localStorage.getItem("form");
+    if (!storedValues)
+      return {
+        email: "",
+        password: "",
+      };
+    return JSON.parse(storedValues);
+  };
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && dataIsCorrect) {
@@ -41,7 +42,7 @@ const CreateAccount = ({ submitForm }) => {
 
   return (
     <div style={{ marginTop: "5rem" }}>
-    <pre>{JSON.stringify(values, undefined, 2)}</pre>
+      {/* <pre>{JSON.stringify(values, undefined, 2)}</pre> */}
       {Object.keys(errors).length === 0 && dataIsCorrect ? (
         <Modal.Dialog>
           <Modal.Body>
